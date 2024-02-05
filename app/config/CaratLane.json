@@ -1,0 +1,147 @@
+{
+    "columns": ["Country_Name", "Company_Name", "Product_Name", "ProductURL", "ImageURL", "Raw_Category", "Category", "Currency", "Price", "Description", "Gold_Colour", "Weight", "Gold_Purity", "Diamond_Colour", "Diamond_Clarity", "Diamond_Pieces", "Diamond_Weight", "Ratings", "RatingCounts"],
+    "actions": [
+        {
+            "id": "0",
+            "url": "https://www.caratlane.com/jewellery/diamond.html",
+            "actionType": "GOTO_URL"
+        },
+        {
+            "id": "1",
+            "waitTimeBeforeScroll": 0.1,
+            "actionType": "INFINITE_SCROLL"
+        },
+        {
+            "id": "2",
+            "companyName": "CaratLane",
+            "countryName": "India",
+            "currency": "INR",
+            "selector": "div.css-17erzg6.e1fkptg30 > div > link",
+            "actionType": "GET_ALL_LINKS",
+            "pageActions": [
+                {
+                    "key": "ImageURL",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "#PDImageSlider > div.css-1le5gr5.e1lw6zht0 > div > div > div > div.slick-slide.slick-active.slick-current > div > div > img"
+                    },
+                    "actionType": "GET_LINK"
+                },
+                {
+                    "key": "Product_Name",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.css-k008qs > h1.css-1mvyi2t.e45wtet4"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Price",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.css-15ddal6.e1crxpb2 > span.css-vd10dy"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Raw_Category",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div > div > div.css-m6s1rx.e195g4sk2 > div.css-5e6b7t.e195g4sk5 > div > ul > li:nth-child(2) > a"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split('\u00a0')[0]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {   
+                    "scrollTo": {
+                        "x": 0,
+                        "y": 1000
+                    },
+                    "actionType": "INFINITE_SCROLL"
+                },
+                {
+                    "key": "Description",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.css-1v8eb9c.e9ew4dk2 > p.css-10r1szi.e9ew4dk7"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.css-1v8eb9c.e9ew4dk2 > div > div:nth-child(2) > div > p"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[1]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "gram"
+                },
+                {
+                    "key": "Gold_Purity",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.css-1v8eb9c.e9ew4dk2 > div > div:nth-child(3) > div > p"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[0]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "karat"
+                },
+                {
+                    "key": "Diamond_Clarity",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div > ul.css-d6lrz5 > li:nth-child(1)"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split('-')[-1]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Colour",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div > ul.css-d6lrz5 > li:nth-child(1)"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split('-')[0]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div > ul.css-d6lrz5 > li:nth-child(4)"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[0]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "carat"
+                },
+                {
+                    "key": "Diamond_Pieces",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div > ul.css-d6lrz5 > li:nth-child(3)"
+                    },
+                    "actionType": "GET_TEXT"
+                }
+            ]
+        }
+    ]
+}

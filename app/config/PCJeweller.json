@@ -1,0 +1,151 @@
+{
+    "columns": ["Country_Name", "Company_Name", "Product_Name", "ProductURL", "ImageURL", "Raw_Category", "Category", "Currency", "Price", "Description", "Gold_Colour", "Weight", "Gold_Purity", "Diamond_Colour", "Diamond_Clarity", "Diamond_Pieces", "Diamond_Weight", "Ratings", "RatingCounts"],
+    "actions": [
+        {
+            "id": "0",
+            "url": "https://www.pcjeweller.com/jewellery/diamond-necklace.html",
+            "actionType": "GOTO_URL"
+        },
+        {
+            "id": "1",
+            "waitTimeBeforeScroll": 0.2,
+            "actionType": "INFINITE_SCROLL"
+        },
+        {
+            "id": "2",
+            "companyName": "PCJeweller",
+            "countryName": "India",
+            "currency": "INR",
+            "selector": "div.bx-contr > div.imageBox > a",
+            "actionType": "GET_ALL_LINKS",
+            "pageActions": [
+                {
+                    "key": "ImageURL",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#img_slider > div.img-slider > img"
+                    },
+                    "actionType": "GET_LINK"
+                },
+                {
+                    "key": "Product_Name",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.clearfix.pos-rel > h1.dark"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Price",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.price-outer > #product-price"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x[1:]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Description",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.titleSec.clearfix > div.section.clearfix.pdt-text-color.text-left.margin-bottom"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Raw_Category",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.bredcrumb.clearfix > div > a:nth-child(5)"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "scrollTo": {
+                        "x": 0,
+                        "y": 1200
+                    },
+                    "actionType": "INFINITE_SCROLL"
+                },
+                {
+                    "key": "Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#metal_weight"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[0]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "gram"
+                },
+                {
+                    "key": "Gold_Colour",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#metal_color"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Gold_Purity",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "li:nth-of-type(4) > div#metal_purity"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x[:-2]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "karat"
+                },
+                {
+                    "key": "Diamond_Clarity",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#color_clarity"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split('-')[-1]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Colour",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#color_clarity"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split('-')[0]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#mCSB_4_container > div:nth-child(4) > div:nth-child(1)"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "carat"
+                },
+                {
+                    "key": "Diamond_Pieces",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div#mCSB_4_container > div:nth-child(3) > div:nth-child(1)"
+                    },
+                    "actionType": "GET_TEXT"
+                }
+            ]
+        }
+    ]
+}

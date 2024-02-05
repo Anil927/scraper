@@ -1,0 +1,159 @@
+{
+    "columns": ["Country_Name", "Company_Name", "Product_Name", "ProductURL", "ImageURL", "Raw_Category", "Category", "Currency", "Price", "Description", "Gold_Colour", "Weight", "Gold_Purity", "Diamond_Colour", "Diamond_Clarity", "Diamond_Pieces", "Diamond_weight", "Ratings", "RatingCounts"],
+    "actions": [
+        {
+            "id": "0",
+            "url": "https://www.tanishq.co.in/shop/diamond?lang=en_IN",
+            "actionType": "GOTO_URL"
+        },
+        {
+            "id": "1",
+            "selector": "div.text-center > button.show-more-btn",
+            "waitTimeBeforeScroll": 0.2,
+            "actionType": "INFINITE_SCROLL",
+            "extra": {
+                "purpose": "closePopUp",
+                "locate": {
+                    "by": "XPATH",
+                    "byValue": "//*[@id=\"html-body\"]/div[5]/aside[2]/div[2]/header/button"
+                },
+                "condition":{
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"desktop_register_wrapper\"]"
+                    }
+                },
+                "actionType": "CLICK"
+            }
+        },
+        {
+            "id": "2",
+            "companyName": "Kalyan",
+            "countryName": "India",
+            "currency": "INR",
+            "selector": "div.product > a.product-item-link",
+            "actionType": "GET_ALL_LINKS",
+            "pageActions": [
+                {
+                    "key": "ImageURL",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product_big_image > img.xzoom5"
+                    },
+                    "actionType": "GET_LINK"
+                },
+                {
+                    "key": "Product_Name",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "h1.page-title > span.base"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Price",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.price_breakups_container > span#new_price"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x[1:]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Description",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product_info_group_wrapper > p"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Raw_Category",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.breadcrumbs > ul > li:nth-child(3) > a"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "td.product_summary_total_gross_weight"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x[:-1]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "gram"
+                },
+                {
+                    "key": "Gold_Colour",
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"metal_table\"]/tr[1]/td[2]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Gold_Purity",
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"metal_table\"]/tr[2]/td[2]"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x[:-1]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "karat"
+                },
+                {
+                    "key": "Diamond_Clarity",
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"diamond_table\"]/tr[3]/td[2]"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[0]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Colour",
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"diamond_table\"]/tr[4]/td[2]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Weight",
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"diamond_table\"]/tr[2]/td[2]"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[0]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "carat"
+                },
+                {
+                    "key": "Diamond_Pieces",
+                    "locate": {
+                        "by": "XPATH",
+                        "byValue": "//*[@id=\"diamond_table\"]/tr[1]/td[2]"
+                    },
+                    "actionType": "GET_TEXT"
+                }
+            ]
+        }
+    ]
+}

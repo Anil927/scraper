@@ -1,0 +1,133 @@
+{
+    "columns": ["Country_Name", "Company_Name", "Product_Name", "ProductURL", "ImageURL", "Raw_Category", "Category", "Currency", "Price", "Description", "Gold_Colour", "Weight", "Gold_Purity", "Diamond_Colour", "Diamond_Clarity", "Diamond_Pieces", "Diamond_Weight", "Ratings", "RatingCounts"],
+    "actions": [
+        {
+            "id": "0",
+            "url": "https://www.malabargoldanddiamonds.com/diamond-jewellery.html",
+            "actionType": "GOTO_URL"
+        },
+        {
+            "id": "1",
+            "selector": "button#m-show-more > span",
+            "waitTimeBeforeScroll": 1,
+            "actionType": "INFINITE_SCROLL"
+        },
+        {
+            "id": "2",
+            "companyName": "Malabar",
+            "countryName": "India",
+            "currency": "INR",
+            "selector": "div.image_wrapper > a.product-image",
+            "actionType": "GET_ALL_LINKS",
+            "pageActions": [
+                {
+                    "key": "ImageURL",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "a.MagicZoom > figure.mz-figure >img"
+                    },
+                    "actionType": "GET_LINK"
+                },
+                {
+                    "key": "Product_Name",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-name > h1"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.rsplit(' ',1)[0]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Price",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product_shop_left > div.price-box > span.regular-price > span.price"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split('\u00a0')[-1]"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Raw_Category",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": " div.breadcrumbs > ul > li.category13 > a > span"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.gross_gold_weight"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x[:-1]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "gram"
+                },
+                {
+                    "key": "Gold_Colour",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.gold_colour"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Gold_Purity",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.gold_purity"
+                    },
+                    "transform": {
+                        "type": "lambda",
+                        "value": "lambda x: x.split(' ')[0]"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "karat"
+                },
+                {
+                    "key": "Diamond_Clarity",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.diamond_clarity"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Colour",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.diamond_colour"
+                    },
+                    "actionType": "GET_TEXT"
+                },
+                {
+                    "key": "Diamond_Weight",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.diamond_carat"
+                    },
+                    "actionType": "GET_TEXT",
+                    "unit": "carat"
+                },
+                {
+                    "key": "Diamond_Pieces",
+                    "locate": {
+                        "by": "CSS_SELECTOR",
+                        "byValue": "div.product-collateral span.f-right.col-md-8.diamond_pcs"
+                    },
+                    "actionType": "GET_TEXT"
+                }
+            ]
+        }
+    ]
+}
