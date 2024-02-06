@@ -9,19 +9,13 @@
         {
             "id": "1",
             "selector": "div.amscroll-load-button",
-            "scrollHeight": 1800,
+            "pauseTimeInSec": 0.2,
             "actionType": "INFINITE_SCROLL",
             "extra": {
                 "purpose": "closePopUp",
                 "locate": {
                     "by": "XPATH",
                     "byValue": "//*[@id=\"html-body\"]/div[5]/aside[2]/div[2]/header/button"
-                },
-                "condition":{
-                    "locate": {
-                        "by": "XPATH",
-                        "byValue": "//*[@id=\"desktop_register_wrapper\"]"
-                    }
                 },
                 "actionType": "CLICK"
             }

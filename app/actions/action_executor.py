@@ -1,3 +1,5 @@
+"""This module is responsible for executing the action based on the action type."""
+
 from playwright.async_api import Playwright
 import sys
 
@@ -13,8 +15,15 @@ from app.store.data_collection import DataCollection
 
 
 class ActionExecutor:
-    """ 
-    This class is responsible for executing the action based on the action type.
+    """ This class is responsible for executing the action based on the action type.
+
+    Attributes:
+        goto_url_executor: The executor for the goto url action.
+        infinite_scroll_executor: The executor for the infinite scroll action.
+        click_executor: The executor for the click action.
+        get_all_links_executor: The executor for the get all links action.
+        get_text_executor: The executor for the get text action.
+        get_link_executor: The executor for the get link action.
     """
 
     def __init__(self):
@@ -32,6 +41,11 @@ class ActionExecutor:
     async def action(self, page: Playwright, action_data:  dict[str, object], store: dict | None=None) -> None:
         """ 
         Based on the action type, it will execute the action.
+
+        Args:
+            page: The playwright page object.
+            action_data: The action data to be executed.
+            store: The store to store the data.
         """
         if action_data['actionType'] == ActionType.GOTO_URL.value:
             await self.goto_url_executor.execute(page, action_data)

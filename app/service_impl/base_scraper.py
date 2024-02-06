@@ -1,3 +1,5 @@
+"""This Method contains the BaseScraper class that is used to initilize and close the playwright and the browser """
+
 import asyncio
 from playwright.async_api import async_playwright, Playwright
 
@@ -8,7 +10,6 @@ class BaseScraper:
 
     def __init__(self) -> None:
         """ 
-        Constructor for the BaseScraper class.
         Initializes the playwright, browser.
         """
         self.playwright = None

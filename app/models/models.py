@@ -1,4 +1,5 @@
-# "columns": ["Country_Name", "Company_Name", "Product_Name", "ProductURL", "ImageURL", "Raw_Category", "Category", "Currency", "Price", "Description", "Gold_Colour", "Weight", "Gold_Purity", "Diamond_Colour", "Diamond_Clarity", "Diamond_Pieces", "Diamond_Weight", "Ratings", "RatingCounts"]
+""" This file contains the model for the database table 'ornament' """
+
 from sqlalchemy import Column, Integer, String, Float
 from app.database_config.database import Base
 

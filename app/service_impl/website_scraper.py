@@ -1,3 +1,9 @@
+"""A module for scraping the website based on the JSON configuration file.
+
+This module is responsible for reading a JSON configuration file, which contains information
+about how to scrape websites and then scrape the website based on the configuration.
+"""
+
 import asyncio
 import json
 import time
@@ -10,13 +16,17 @@ from app.logger_utils.logger import logger
 class WebsiteScraper(BaseScraper):
     """ 
     WebsiteScraper class is used to scrape the website based on the json configuration file.
+
+    Attributes:
+        config: The JSON configuration file for scraping the website.
+        action_instance: The ActionExecutor instance to execute the actions.
     """
 
     def __init__(self, config_file: str):
         """ 
         Constructor to initialize the WebsiteScraper class.
 
-        Parameters:
+        Args:
             config_file: The path of the JSON configuration file for scraping the website.
         """
         super().__init__()
@@ -38,7 +48,7 @@ async def main(files: list[str]) -> None:
     """ 
     Main method to scrape the websites based on the JSON configuration files.
 
-    Parameters:
+    Args:
         files: The list of JSON configuration files for scraping the websites.
     """
 

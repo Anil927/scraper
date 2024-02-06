@@ -1,3 +1,5 @@
+""" This module contains the logger configuration. """
+
 import logging
 import sys
 
@@ -11,7 +13,7 @@ logger.setLevel(logging.INFO)
 handler = logging.StreamHandler(sys.stdout)
 
 # Create a formatter
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+formatter = logging.Formatter('\n%(asctime)s - %(levelname)s - %(message)s')
 
 # Add the formatter to the handler
 handler.setFormatter(formatter)

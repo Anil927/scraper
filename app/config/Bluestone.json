@@ -1,14 +1,14 @@
 {
-    "columns": ["Country_Name", "Company_Name", "Product_Name", "ProductURL", "ImageURL", "Raw_Category", "Category", "Currency", "Price", "Description", "Gold_Colour", "Weight", "Gold_Purity", "Diamond_Colour", "Diamond_Clarity", "Diamond_Pieces", "Diamond_Weight", "Ratings", "RatingCounts"],
     "actions": [
         {
             "id": "0",
-            "url": "https://www.bluestone.com/jewellery/filter/18k-diamond-pendants-unisex.html",
+            "url": "https://www.bluestone.com/jewellery/filter/diamond-rs+10000+to+20000.html",
             "actionType": "GOTO_URL"
         },
         {
             "id": "1",
-            "scrollHeight": 100,
+            "footerHeight": 700,
+            "pauseTimeInSec": 0.2,
             "actionType": "INFINITE_SCROLL"
         },
         {

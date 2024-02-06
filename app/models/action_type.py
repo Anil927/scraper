@@ -1,6 +1,8 @@
 from enum import Enum
 
 class ActionType(Enum):
+    """An enum to define the different types of actions that can be performed."""
+    
     CLICK = 'CLICK'
     INFINITE_SCROLL = 'INFINITE_SCROLL'
     GET_LINK = 'GET_LINK'
